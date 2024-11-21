@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%-15.-15thread] %highlight(%-5.-5level) %cyan(%45.45logger{45}):\t%msg %n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.framefork" level="debug"/>
+    <logger name="org.springframework" level="warn"/>
+
+    <root level="debug">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
