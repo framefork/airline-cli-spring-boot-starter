@@ -1,5 +1,5 @@
 plugins {
-    id("framefork.java-public")
+    id("org.framefork.build.library-published")
 }
 
 dependencies {
@@ -10,10 +10,8 @@ dependencies {
     annotationProcessor(libs.spring.boot.configuration.processor)
 
     testImplementation(libs.logback.classic)
-    testImplementation(libs.junit.jupiter)
     testImplementation(libs.spring.boot.starter.test)
     testImplementation(libs.junit.systemExit)
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 tasks.withType<Test> {

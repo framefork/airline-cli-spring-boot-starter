@@ -1,16 +1,17 @@
-import kotlin.io.path.listDirectoryEntries
-
 pluginManagement {
-}
-
-dependencyResolutionManagement {
-    versionCatalogs {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
     }
 }
 
-rootProject.name = "airline-cli-spring-boot-starter"
-
-file("${rootProject.projectDir}/modules").toPath().listDirectoryEntries().forEach { moduleDir ->
-    include("${moduleDir.fileName}")
-    project(":${moduleDir.fileName}").projectDir = moduleDir.toFile()
+plugins {
+    id("org.framefork.build") version "0.2.0"
 }
+
+framefork {
+    minJavaVersion = 21
+    jdkVersion = 21
+}
+
+rootProject.name = "airline-cli-spring-boot-starter"
