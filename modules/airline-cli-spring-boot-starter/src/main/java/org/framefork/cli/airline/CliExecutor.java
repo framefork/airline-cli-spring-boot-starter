@@ -30,16 +30,15 @@ public class CliExecutor
     public int execute(final String[] args) throws Exception
     {
         var parsed = parse(args);
-        switch (parsed) {
-            case Parsed.Failure failure -> {
-                return errorHandler.handleError(args, failure.error(), failure.exitCode());
-            }
-            case Parsed.Success success -> {
-                log.debug("Executing `{}`", success.commandName());
-                success.executableCommand().execute();
-                return 0;
-            }
+        if (parsed instanceof Parsed.Failure failure) {
+            return errorHandler.handleError(args, failure.error(), failure.exitCode());
         }
+        if (parsed instanceof Parsed.Success success) {
+            log.debug("Executing `{}`", success.commandName());
+            success.executableCommand().execute();
+            return 0;
+        }
+        throw new IllegalStateException("Unexpected Parsed subtype: " + parsed);
     }
 
     public Parsed parse(final String[] args)
